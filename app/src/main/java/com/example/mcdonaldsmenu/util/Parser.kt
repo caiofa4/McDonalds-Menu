@@ -1,7 +1,6 @@
 package com.example.mcdonaldsmenu.util
 
 import com.example.mcdonaldsmenu.network.MENUS
-import com.example.mcdonaldsmenu.network.model.Item
 import com.example.mcdonaldsmenu.network.model.Menu
 import com.google.gson.Gson
 import com.google.gson.JsonObject

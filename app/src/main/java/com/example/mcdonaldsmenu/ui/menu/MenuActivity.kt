@@ -3,6 +3,7 @@ package com.example.mcdonaldsmenu.ui.menu
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.carousel
@@ -23,49 +24,42 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         mContext = this
         menuViewModel.attachView(this)
         menuViewModel.getMenuFromAPI()
+
+        binding.srlMenu.setOnRefreshListener {
+            menuScreenList.clear()
+            menuViewModel.getMenuFromAPI()
+            binding.srlMenu.isRefreshing = false
+        }
     }
 
     override fun onMenuLoaded(menuList: List<Menu>) {
-//        if (menuList.isNotEmpty()) {
-//            val message1 = """
-//                ${menuList[0].name}
-//                ${menuList[0].items?.get(0)?.name}
-//                ${menuList[0].items?.get(0)?.price}
-//            """.trimIndent()
-//
-//            val message2 = """
-//                ${menuList[1].name}
-//                ${menuList[1].items?.get(0)?.name}
-//                ${menuList[1].items?.get(0)?.price}
-//            """.trimIndent()
-//
-//            //Toast.makeText(this, message1, Toast.LENGTH_SHORT).show()
-//            Toast.makeText(this, message2, Toast.LENGTH_SHORT).show()
-//        }
+        val sortedMenuList = menuList.sortedBy { it.name }
 
         menuScreenList.add(0, HeaderItemView.HeaderModuleItem)
 
-        menuList.forEach { menu ->
+        for (menu in sortedMenuList) {
+            Log.i("testeMenuMain", menu.name)
             menuScreenList.add(TitleItemView.TitleModuleData(menu.name))
             val itemCardList = mutableListOf<MenuItemView.MenuModuleData>()
             menu.items?.forEach { item ->
+                Log.i("testeMenuItem", item.name)
                 itemCardList.add(MenuItemView.MenuModuleData(item))
             }
             menuScreenList.add(ItemCardList(itemCardList))
         }
 
+        Log.i("testeMenuCount", menuScreenList.count().toString())
+
         showMenuData(menuScreenList)
     }
 
     private data class ItemCardList(val itemCardList: List<MenuItemView.MenuModuleData>) : ModuleItem
-
 
     private fun showMenuData(menuScreenList: List<ModuleItem>) {
         binding.rvMenu.withModels {
