@@ -1,8 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 android {
@@ -11,7 +15,7 @@ android {
     defaultConfig {
         applicationId "com.example.mcdonaldsmenu"
         minSdk 27
-        targetSdk 31
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
@@ -31,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -39,7 +46,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    testImplementation 'junit:junit:4.+'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
@@ -57,4 +65,8 @@ dependencies {
 
     // GSON
     implementation "com.google.code.gson:gson:2.8.8"
+
+    // epoxy
+    implementation "com.airbnb.android:epoxy:4.2.0"
+    kapt "com.airbnb.android:epoxy-processor:4.2.0"
 }

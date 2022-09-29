@@ -3,10 +3,16 @@ package com.example.mcdonaldsmenu.ui.menu
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.mcdonaldsmenu.R
+import com.example.mcdonaldsmenu.databinding.ActivityMainBinding
+import com.example.mcdonaldsmenu.epoxymodel.HeaderItemView
+import com.example.mcdonaldsmenu.epoxymodel.ModuleItem
+import com.example.mcdonaldsmenu.epoxymodel.headerItemView
 import com.example.mcdonaldsmenu.network.model.Menu
 
 class MenuActivity : AppCompatActivity(), MenuContract.View {
+
+    private lateinit var binding: ActivityMainBinding
+    private var menuScreenList: MutableList<ModuleItem> = ArrayList()
 
     private val menuViewModel: MenuViewModel by lazy {
         MenuViewModel(this)
@@ -14,7 +20,9 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         menuViewModel.attachView(this)
         menuViewModel.getMenuFromAPI()
@@ -37,9 +45,33 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
             //Toast.makeText(this, message1, Toast.LENGTH_SHORT).show()
             Toast.makeText(this, message2, Toast.LENGTH_SHORT).show()
         }
+
+        menuScreenList.add(0, HeaderItemView.HeaderModuleItem)
+
+        menuList.forEach { menu ->
+
+        }
+
+
+        showMenuData(menuScreenList)
+    }
+
+    private fun showMenuData(menuScreenList: List<ModuleItem>) {
+        binding.rvMenu.withModels {
+            menuScreenList.forEachIndexed { _, moduleItem ->
+                when (moduleItem) {
+                    is HeaderItemView.HeaderModuleItem -> headerItemView {
+                        id("header")
+                    }
+                }
+            }
+
+        }
     }
 
     override fun onNetworkError(errorMessage: String) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
+
+
 }
