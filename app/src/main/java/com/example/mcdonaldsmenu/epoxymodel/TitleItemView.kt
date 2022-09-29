@@ -30,7 +30,5 @@ class TitleItemView @JvmOverloads constructor(
         tvTitle.text = titleModuleData.title
     }
 
-    data class TitleModuleData(
-        val title: String
-    ) : ModuleItem
+    data class TitleModuleData(val title: String) : ModuleItem
 }

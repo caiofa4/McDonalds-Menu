@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 data class Menu(
 
     @field:SerializedName("name")
-    val name: String? = null,
+    val name: String,
 
     @field:SerializedName("items")
     val items: List<Item>? = null

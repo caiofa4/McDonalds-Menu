@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.mcdonaldsmenu.databinding.ActivityMainBinding
-import com.example.mcdonaldsmenu.epoxymodel.HeaderItemView
-import com.example.mcdonaldsmenu.epoxymodel.ModuleItem
-import com.example.mcdonaldsmenu.epoxymodel.headerItemView
+import com.example.mcdonaldsmenu.epoxymodel.*
 import com.example.mcdonaldsmenu.network.model.Menu
 
 class MenuActivity : AppCompatActivity(), MenuContract.View {
@@ -49,7 +47,7 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
         menuScreenList.add(0, HeaderItemView.HeaderModuleItem)
 
         menuList.forEach { menu ->
-
+            menuScreenList.add(TitleItemView.TitleModuleData(menu.name))
         }
 
 
@@ -62,6 +60,10 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
                 when (moduleItem) {
                     is HeaderItemView.HeaderModuleItem -> headerItemView {
                         id("header")
+                    }
+                    is TitleItemView.TitleModuleData -> titleItemView {
+                        id("title")
+                        titleData(moduleItem)
                     }
                 }
             }
