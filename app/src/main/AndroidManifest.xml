@@ -13,7 +13,8 @@
         android:theme="@style/Theme.McDonaldsMenu">
         <activity
             android:name=".ui.menu.MenuActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/MenuTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
