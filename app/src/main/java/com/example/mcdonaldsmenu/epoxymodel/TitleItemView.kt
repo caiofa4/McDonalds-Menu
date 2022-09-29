@@ -5,11 +5,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
 import com.example.mcdonaldsmenu.R
-import java.math.BigDecimal
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
 class TitleItemView @JvmOverloads constructor(

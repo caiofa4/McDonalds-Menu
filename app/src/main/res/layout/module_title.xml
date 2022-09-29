@@ -9,13 +9,13 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Beverages"
         android:textSize="36sp"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginStart="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

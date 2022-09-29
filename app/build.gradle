@@ -69,4 +69,7 @@ dependencies {
     // epoxy
     implementation "com.airbnb.android:epoxy:4.2.0"
     kapt "com.airbnb.android:epoxy-processor:4.2.0"
+
+    // image loading
+    implementation("io.coil-kt:coil:1.1.0")
 }

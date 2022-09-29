@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">McDonaldsMenu</string>
     <string name="app_logo_text">App Logo</string>
+    <string name="item_image_text">Item Image</string>
 </resources>
