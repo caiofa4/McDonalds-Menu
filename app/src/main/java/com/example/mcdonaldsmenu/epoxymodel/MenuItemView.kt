@@ -40,7 +40,6 @@ class MenuItemView @JvmOverloads constructor(
 
     @ModelProp
     fun setMenuData(menuModuleData: MenuModuleData) {
-
         ivItem.load(menuModuleData.item.url) {
             crossfade(true)
             error(R.mipmap.ic_launcher_round)

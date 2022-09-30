@@ -1,21 +1,30 @@
 package com.example.mcdonaldsmenu.ui.menu
 
+import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.carousel
+import com.example.mcdonaldsmenu.R
 import com.example.mcdonaldsmenu.databinding.ActivityMainBinding
 import com.example.mcdonaldsmenu.epoxymodel.*
 import com.example.mcdonaldsmenu.network.model.Item
 import com.example.mcdonaldsmenu.network.model.Menu
+import com.example.mcdonaldsmenu.util.ManageDialog
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class MenuActivity : AppCompatActivity(), MenuContract.View {
 
-    private lateinit var mContext: Context
+    private lateinit var mActivity: Activity
     private lateinit var binding: ActivityMainBinding
+    private lateinit var dialog: BottomSheetDialog
     private var menuScreenList: MutableList<ModuleItem> = ArrayList()
 
     private val menuViewModel: MenuViewModel by lazy {
@@ -27,7 +36,8 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mContext = this
+        mActivity = this
+        dialog = BottomSheetDialog(this)
         menuViewModel.attachView(this)
         menuViewModel.getMenuFromAPI()
 
@@ -80,13 +90,7 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
                                     .id(it.item.name).menuData(it).itemClickListener(object :
                                         MenuItemView.OnMenuItemClickedListener {
                                         override fun onItemClicked(item: Item) {
-                                            Toast.makeText(mContext, "${item.name} - ${item.price}", Toast.LENGTH_SHORT).show()
-//                                            startActivityForResult(
-//                                                CoinDetailsActivity.buildLaunchIntent(
-//                                                    requireContext(),
-//                                                    coinSymbol
-//                                                ), COIN_DETAILS_CODE
-//                                            )
+                                            ManageDialog.createBottomSheetDialog(mActivity, item, dialog)
                                         }
                                     })
                             )
@@ -101,13 +105,11 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
                     }
                 }
             }
-
         }
     }
 
     override fun onNetworkError(errorMessage: String) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
-
 
 }
