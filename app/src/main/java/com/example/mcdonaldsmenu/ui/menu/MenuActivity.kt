@@ -4,9 +4,12 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.carousel
+import com.example.mcdonaldsmenu.R
 import com.example.mcdonaldsmenu.databinding.ActivityMainBinding
 import com.example.mcdonaldsmenu.epoxymodel.*
 import com.example.mcdonaldsmenu.network.model.Item
@@ -32,6 +35,9 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
 
         mActivity = this
         dialog = BottomSheetDialog(this)
+
+        initializeUI()
+
         menuViewModel.attachView(this)
         menuViewModel.getMenuFromAPI()
 
@@ -40,6 +46,13 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
             menuViewModel.getMenuFromAPI()
             binding.srlMenu.isRefreshing = false
         }
+    }
+
+    private fun initializeUI() {
+        // set status bar color as white
+        val background = ContextCompat.getDrawable(this, R.color.white)
+        window.statusBarColor = ContextCompat.getColor(this,android.R.color.transparent)
+        window.setBackgroundDrawable(background)
     }
 
     override fun onMenuLoaded(menuList: List<Menu>) {
