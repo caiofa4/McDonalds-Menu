@@ -1,18 +1,12 @@
 package com.example.mcdonaldsmenu.ui.menu
 
 import android.app.Activity
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
-import coil.load
-import coil.transform.RoundedCornersTransformation
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.carousel
-import com.example.mcdonaldsmenu.R
 import com.example.mcdonaldsmenu.databinding.ActivityMainBinding
 import com.example.mcdonaldsmenu.epoxymodel.*
 import com.example.mcdonaldsmenu.network.model.Item
