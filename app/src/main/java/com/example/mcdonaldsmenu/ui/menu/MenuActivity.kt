@@ -105,7 +105,7 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
                         carousel {
                             id("itemCardList")
                             models(menuCards)
-                            numViewsToShowOnScreen(2.25F)
+                            numViewsToShowOnScreen(2.15F)
                             Carousel.setDefaultGlobalSnapHelperFactory(null)
                         }
                         binding.rvMenu.smoothScrollToPosition(0)
