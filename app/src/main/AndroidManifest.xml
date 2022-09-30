@@ -14,7 +14,7 @@
         <activity
             android:name=".ui.menu.MenuActivity"
             android:exported="true"
-            android:theme="@style/MenuTheme">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
