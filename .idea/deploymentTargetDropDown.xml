@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\muleq\.android\avd\Pixel_4_XL_API_30.avd" />
+            <value value="C:\Users\muleq\.android\avd\Pixel_3_API_30.avd" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-10-03T18:43:42.877201300Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-10-03T19:00:56.242311900Z" />
   </component>
 </project>
