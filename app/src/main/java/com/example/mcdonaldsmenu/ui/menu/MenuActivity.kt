@@ -55,11 +55,11 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
     }
 
     override fun onMenuLoaded(menuList: List<Menu>) {
-        val sortedMenuList = menuList.sortedBy { it.name }
+        //val sortedMenuList = menuList.sortedBy { it.name }
 
         menuScreenList.add(0, HeaderItemView.HeaderModuleItem)
 
-        for (menu in sortedMenuList) {
+        for (menu in menuList) {
             Log.i("testeMenuMain", menu.name)
             menuScreenList.add(TitleItemView.TitleModuleData(menu.name))
             val itemCardList = mutableListOf<MenuItemView.MenuModuleData>()
@@ -79,18 +79,20 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
 
     private fun showMenuData(menuScreenList: List<ModuleItem>) {
         binding.rvMenu.withModels {
-            menuScreenList.forEachIndexed { _, moduleItem ->
+            menuScreenList.forEach { moduleItem ->
                 when (moduleItem) {
                     is HeaderItemView.HeaderModuleItem -> headerItemView {
                         id("header")
                     }
                     is TitleItemView.TitleModuleData -> titleItemView {
                         id("title")
+                        Log.i("testeMenuTitle", moduleItem.title)
                         titleData(moduleItem)
                     }
                     is ItemCardList -> {
                         val menuCards = mutableListOf<MenuItemViewModel_>()
                         moduleItem.itemCardList.forEach {
+                            Log.i("testeMenumoduleItem", it.item.name)
                             menuCards.add(
                                 MenuItemViewModel_()
                                     .id(it.item.name).menuData(it).itemClickListener(object :
@@ -103,11 +105,14 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
                         }
                         carousel {
                             id("itemCardList")
+                            for (menuCard in menuCards) {
+                                Log.i("testeMenuCards", menuCard.menuData().item.name)
+                            }
                             models(menuCards)
-                            numViewsToShowOnScreen(2.15F)
+                            numViewsToShowOnScreen(2.95F)
                             Carousel.setDefaultGlobalSnapHelperFactory(null)
                         }
-                        binding.rvMenu.smoothScrollToPosition(0)
+                        //binding.rvMenu.smoothScrollToPosition(0)
                     }
                 }
             }
