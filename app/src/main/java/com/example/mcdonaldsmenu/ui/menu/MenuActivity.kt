@@ -24,7 +24,7 @@ class MenuActivity : AppCompatActivity(), MenuContract.View {
     private var menuScreenList: MutableList<ModuleItem> = ArrayList()
 
     private val menuViewModel: MenuViewModel by lazy {
-        MenuViewModel(this)
+        MenuViewModel()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
