@@ -9,4 +9,4 @@ A screen that fetches data from our Mock McDonalds Menu API and displays the men
 - Usage of a BaseViewModel, allowing all View Models to attach view and work directly with coroutines 
 
 Link for Demo video: https://drive.google.com/file/d/1MgfNfwcRnUNJ6JABLBj1IhZ1hlcNwzuj/view?usp=sharing
-Link for Technical Approach: https://docs.google.com/document/d/172F-_z7XajMR1Ee80JIVz_ZYX5_0iybX/edit?usp=sharing&ouid=100267238357436314813&rtpof=true&sd=true
+Link for Technical Approach: https://docs.google.com/document/d/11PxqGd7ubYStLLMeQry_hHnWsgQ8VA5s/edit?usp=sharing&ouid=100267238357436314813&rtpof=true&sd=true
